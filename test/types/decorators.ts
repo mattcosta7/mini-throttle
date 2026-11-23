@@ -26,10 +26,9 @@ export class Example {
   // @ts-expect-error fields are not methods
   @throttle(100)
   field = () => {}
-
-  // @ts-expect-error getters are not methods
-  @debounce(100)
-  get value() {
-    return 1
-  }
 }
+
+// Existing code that assigns the decorators to `MethodDecorator`, or forwards a `MethodDecorator`'s arguments to them,
+// keeps compiling.
+export const assigned: MethodDecorator = throttle(100)
+export const forwarding: MethodDecorator = (target, key, descriptor) => debounce(100)(target, key, descriptor)

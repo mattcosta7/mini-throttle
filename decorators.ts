@@ -17,7 +17,12 @@ export interface MethodDecoratorContext {
  */
 export interface DualMethodDecorator {
   <T extends Method>(method: T, context: MethodDecoratorContext): T
-  <T extends Method>(proto: object, name: string | symbol, descriptor: TypedPropertyDescriptor<T>): void
+  // Matches `MethodDecorator`, which these decorators returned before, so existing code that forwards to them compiles.
+  <T>(
+    target: object,
+    propertyKey: string | symbol,
+    descriptor: TypedPropertyDescriptor<T>
+  ): TypedPropertyDescriptor<T> | void
 }
 
 function methodDecorator(wrap: (fn: Method) => Method): DualMethodDecorator {

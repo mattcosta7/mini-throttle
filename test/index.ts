@@ -261,7 +261,7 @@ describe('decorators', () => {
     }).toThrow('debounce can only decorate functions')
     expect(() => {
       class Getter {
-        // @ts-expect-error getters are not methods
+        // Type-checks, as with `MethodDecorator`, and throws when the class is defined.
         @decoratorDebounce(100)
         get foo() {
           return 1
