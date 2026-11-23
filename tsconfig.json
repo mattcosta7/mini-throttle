@@ -13,5 +13,5 @@
     "experimentalDecorators": true,
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "dist", "test/standard"]
+  "exclude": ["node_modules", "dist", "test/standard", "test/types/standard.ts"]
 }
